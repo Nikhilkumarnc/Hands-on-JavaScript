@@ -1,0 +1,22 @@
+// #1---Data Types---
+// #1 Undefined: Value taken by a variable that is not yet defined('empyt value)
+// #2 Null: Also means 'empty value'
+// #3 Symbol: Value that is unique and cannot be changed
+// #4 Bigint: Larger integers than the Number can hold
+
+// #2---Dynamic Typing---
+
+
+// #1-Undefined: variable declated without assigning value to it. (empty value)
+
+// #2-Null: both the value and typeof of the value is null
+
+// #1 Playwright: Variables & Scoping: var, let, const
+// #3---Variables & Scoping: var, let and const---
+
+// #3.1-let: we use the let keyword to declare variables that can change later so basically during the execution of the program
+// #3.2-const. Const variables are immutable. Use always const variables to avoid the errors. Use let variables only if you sure value is going to change during execution of the program. We cannot declare const variables without assigning values to it
+
+
+
+
