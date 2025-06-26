@@ -46,5 +46,6 @@ btnRoll.addEventListener('click', function () {
     player1El.classList.toggle('player--active');
     console.log('sync1');
     console.log('sync2');
+    console.log('3');
   }
 });
