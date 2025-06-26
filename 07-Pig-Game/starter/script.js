@@ -47,5 +47,7 @@ btnRoll.addEventListener('click', function () {
     console.log('sync1');
     console.log('sync2');
     console.log('3');
+    console.log('4');
+    console.log('5');
   }
 });
