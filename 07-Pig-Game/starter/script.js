@@ -44,5 +44,6 @@ btnRoll.addEventListener('click', function () {
     activePlayer = activePlayer === 0 ? 1 : 0;
     player0El.classList.toggle('player--active'); // toggle() fucntion will add the 'player--active' class to the element if it is not there and vice versa
     player1El.classList.toggle('player--active');
+    console.log('sync1');
   }
 });
