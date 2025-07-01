@@ -17,8 +17,8 @@ score0El.textContent = 0; // here we are specifying numbers(0) not strings but J
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
+const scores = [0, 0]; // Array to hold scores for both players
 let currentScore = 0;
-
 let activePlayer = 0;
 
 // Rolling functionality
@@ -46,3 +46,6 @@ btnRoll.addEventListener('click', function () {
     player1El.classList.toggle('player--active');
   }
 });
+// Holding functionality
+// 1. Add current score to active player's score
+scores[activePlayer] += currentScore;
