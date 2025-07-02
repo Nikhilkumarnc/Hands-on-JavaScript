@@ -270,7 +270,7 @@ const marriedJessica2 = marryPerson(jessica, 'Davis');
 console.log('Before: ', jessica); // Davis
 console.log('After: ', marriedJessica); // Davis
 
-console.log(`// -----#35.1 Shallow Copy-----`);
+console.log(`// #35.1 Shallow Copy`);
 const jessicaOriginal = {
   firstName: 'Jessia',
   lastName: 'Williams',
