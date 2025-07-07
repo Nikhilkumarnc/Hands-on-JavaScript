@@ -22,6 +22,23 @@ const mexicanFoods = new Set([
   'garlic',
 ]);
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -30,33 +47,20 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function (starterIndex, mainIndex) {
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
   //#37.5 receiving objects into the fucntions, function will immediately destructure the object`. And setting default values to the properties of an object
-  orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+  orderDelivery({ starterIndex, mainIndex, time, address }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`here is your pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  openingHours,
 };
 
 //#37.5 passing objects into the fucntions, function will immediately destructure the object`
@@ -204,3 +208,133 @@ restaurantCopy.name = 'Ristorante Roma';
 
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+
+console.log(`//#39. short circuit(|| and &&)`);
+console.log(`//#39.2 OR(||)`);
+
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// restaurant.numGuests = 23;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
+console.log(restaurant.numGuests);
+
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+
+console.log(`\n//#39.2 AND(&&)`);
+
+console.log(0 && 'Jonas');
+console.log('Hello' && 23 && null && 'Jonas');
+
+restaurant.orderPasta && restaurant.orderPasta('mushroom', 'Cheese', 'Onion');
+
+const nullishNull = null;
+console.log('nullishNull: ', nullishNull ?? 10);
+
+const nullishUndefined = undefined;
+console.log('nullishUndefined: ', nullishUndefined ?? 20);
+
+const nuliish0 = 0;
+console.log('nuliish0: ', nuliish0 ?? 'so it returns 0 only');
+
+const nullishEmptyString = '';
+console.log('nullishEmptyString: ', nullishEmptyString ?? 'returns empty');
+
+const nullishFalse = false;
+console.log('nullishFalse: ', nullishFalse ?? 'returnse false only');
+
+console.log(
+  `Note: nullish coalescing set defaul values only to those variables which values are null and undefined and for all other falsy values it returns what false(false, 0, '') value it holds`
+);
+
+console.log(`//#39.3 ??= and &&=`);
+const rest1 = {
+  rname: 'a',
+  numGuests: 20,
+  city: false,
+  and: true,
+};
+
+const rest2 = {
+  rname: 'b',
+  owner: 'x',
+};
+
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+console.log(rest1);
+console.log(rest2);
+
+rest2.owner = rest2.owner && '<ANANYMOUS>';
+console.log(rest2.owner);
+
+rest1.owner = rest1.owner && '<ANANYMOUS>';
+console.log(rest1.owner);
+
+rest1.address = rest1.location ?? '<VIJAYANAGAR>';
+console.log('rest1.address: ', rest1.address);
+
+rest1.city ??= 'Bangalore';
+console.log('rest1.city: ', rest1.city);
+
+// rest1.and = rest1.and && false;
+// console.log('rest1.and: ', rest1.and);
+
+rest1.and &&= false;
+console.log('rest1.and: ', rest1.and);
+
+console.log(`\n//#40. Looping with array with 'for of' loop`);
+
+const menus = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menus);
+
+console.log(`\n//#40.1 for of`);
+for (const item of menus) console.log(item);
+
+for (const [i, el] of menus.entries()) console.log(`${i}: ${el}`);
+
+console.log(`//#41 Enhanced Object literals`);
+console.log('restaurant: ', restaurant);
+
+console.log(`//#42 Optional Chaining`);
+console.log(`//42.1 
+object?.property
+object?.[key]
+object?.method?.()
+`);
+
+console.log(
+  `\n//#42.2 'for of', opetional chaining and nullish coalescing operator in practice`
+);
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'Closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+console.log(restaurant.order?.(0, 1) ?? `Method doesn't exist`);
+console.log(restaurant.orderRisotto?.(0, 1) ?? `Method doesn't exist`);
+
+console.log(`\n//#42.3 Optional chaining with arrays`);
+
+const users = [{ uname: 'Jonas', email: 'Jonas@io.com' }];
+
+console.log(users[0]?.uname ?? 'users array is empty');
+
+console.log(`\n//#43, rest pattern and parameters `);
+
+const [l, m, ...others] = [1, 2, 3, 4, 5];
+console.log(l, m, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
